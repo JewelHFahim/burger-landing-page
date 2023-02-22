@@ -1,0 +1,12 @@
+.img-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+.img-container .img-two{
+    position: absolute;
+    right: 0;
+    margin-right: -200px;
+}
