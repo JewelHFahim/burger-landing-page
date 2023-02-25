@@ -1,41 +1,44 @@
-
 import React, { useState } from 'react';
 import { Transition } from 'react-transition-group';
-import img from "../Assets/burger2.png"
+import burger1 from "../Assets/burger3.png";
+import burger2 from "../Assets/burger4.png";
+import burger3 from "../Assets/burger5.png";
+import "./Slider.css";
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   const slides = [
     {
-      src: 'https://burger-landing-page-mb.netlify.app/static/media/burger2.db5958546addac58b6a0.png'
+      src: `${burger1}`
     },
     {
-      src: 'https://burger-landing-page-mb.netlify.app/static/media/burger2.db5958546addac58b6a0.png'
+      src: `${burger2}`
     },
     {
-      src:'https://burger-landing-page-mb.netlify.app/static/media/burger2.db5958546addac58b6a0.png'
+      src:`${burger3}`
     },
   ]
 
   const transitionStyles = {
     entering: {
-      transition: 'all 0.5s ease-in-out',
-      transform: 'translateX(100%) scale(0.5)'
+      transition: 'ease-in',
+      transform: 'translateX(100%) scale(.000001)'
     },
     entered: {
-      transition: 'all 0.5s ease-in-out',
+      transition: 'all .5s .1s',
       transform: 'translateX(0%) scale(1)'
     },
     exiting: {
-      transition: 'all 0.5s ease-in-out',
-      transform: 'translateX(-100%) scale(1)'
+      transition: 'all 1s ease-out',
+      transform: 'translateX(-1000%) scale(.5)'
     },
     exited: {
-      transition: 'all 0.5s ease-in-out',
-      transform: 'translateX(0%) scale(0.5)'
+      transition: '1s ease-out',
+      transform: 'translateX(1000%) scale(.5)'
     }
   }
+
 
   const handleNextClick = () => {
     const nextIndex = slideIndex === slides.length - 1 ? 0 : slideIndex + 1;
@@ -48,15 +51,22 @@ const Slider = () => {
   };
 
   return (
-    <div>
-
-      {slides.map((slide, index) => (
+    <div className='slider-container'>
+      
+      <div>
+        {/* Main SLider Image */}
+       {slides.map((slide, index) => (
         <Transition key={index} in={index === slideIndex} timeout={500} appear mountOnEnter unmountOnExit>
           {state => ( <img src={slide.src} style={{ ...transitionStyles[state], width: "100%", height: "100%"}}/>)}
         </Transition>
-      ))}
-      <button onClick={handleNextClick}>Next</button>
-      <button onClick={handlePreviousClick}>Previous</button>
+      ))} 
+      </div>
+
+    {/* Slide Control Button */}
+    <div className='text-center'>
+      <button onClick={handleNextClick} className="left-btn nav-btn">❮</button>
+      <button onClick={handlePreviousClick} className="right-btn nav-btn">❯</button>
+    </div>
  
     </div>
   );
