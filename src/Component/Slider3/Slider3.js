@@ -1,4 +1,5 @@
 import ImageSlider from "./ImageSlider";
+import "./Slider3.css";
 
 
 const Slider3 = () => {
@@ -13,18 +14,15 @@ const Slider3 = () => {
   ];
 
 
-  const containerStyles = {
-    width: "500px",
-    height: "280px",
-    margin: "0 auto",
-  };
+
   return (
-    <div>
-      <h1>Hello Buddy</h1>
-      <div style={containerStyles}>
+      <div className="containerStyles">
+    
+
         <ImageSlider slides={slides} />
+
+
       </div>
-    </div>
   );
 };
 

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import React from 'react';
+import img from "../Assets/burger2.png";
+import "./ImageSlider.css"
 
 
 const slideStyles = {
@@ -8,6 +10,7 @@ const slideStyles = {
   borderRadius: "10px",
   backgroundSize: "cover",
   backgroundPosition: "center",
+  border: '5px solid red'
 };
 
 const rightArrowStyles = {
@@ -48,6 +51,25 @@ const dotStyle = {
   fontSize: "20px",
 };
 
+  const transitionStyles = {
+    entering: {
+      transition: 'ease-in',
+      transform: 'translateX(100%) scale(.000001)'
+    },
+    entered: {
+      transition: 'all .5s .1s',
+      transform: 'translateX(0%) scale(1)'
+    },
+    exiting: {
+      transition: 'all 1s ease-out',
+      transform: 'translateX(-1000%) scale(.5)'
+    },
+    exited: {
+      transition: '1s ease-out',
+      transform: 'translateX(1000%) scale(.5)'
+    }
+  }
+
 
 const ImageSlider = ({ slides }) => {
 
@@ -71,32 +93,32 @@ const ImageSlider = ({ slides }) => {
     };
     
     const slideStylesWidthBackground = {
-      ...slideStyles,
+      ...slideStyles, transitionStyles,
       backgroundImage: `url(${slides[currentIndex].url})`,
     };
   
     return (
       <div style={sliderStyles}>
+
+
+        {/* Arrow Controller */}
         <div>
-          <div onClick={goToPrevious} style={leftArrowStyles}>
-            ❰
-          </div>
-          <div onClick={goToNext} style={rightArrowStyles}>
-            ❱
-          </div>
+          <div onClick={goToPrevious} style={rightArrowStyles} > ❰ </div>
+          <div onClick={goToNext} style={leftArrowStyles} > ❱ </div>
         </div>
-        <div style={slideStylesWidthBackground}></div>
-        <div style={dotsContainerStyles}>
-          {slides.map((slide, slideIndex) => (
-            <div
-              style={dotStyle}
-              key={slideIndex}
-              onClick={() => goToSlide(slideIndex)}
-            >
-              ●
+
+        <div style={ slideStylesWidthBackground } ></div>
+
+       <div style={dotsContainerStyles}>
+          {
+          slides.map((slide, slideIndex) => (
+            <div style={dotStyle} key={slideIndex} onClick={() => goToSlide(slideIndex)}>
+              <img src={img} alt="" />
             </div>
           ))}
-        </div>
+        </div> 
+
+        
       </div>
     );
   };

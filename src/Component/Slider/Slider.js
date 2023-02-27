@@ -55,9 +55,12 @@ const Slider = () => {
       
       <div>
         {/* Main SLider Image */}
-       {slides.map((slide, index) => (
+       {
+       
+       slides.map((slide, index) => (
         <Transition key={index} in={index === slideIndex} timeout={500} appear mountOnEnter unmountOnExit>
           {state => ( <img src={slide.src} style={{ ...transitionStyles[state], width: "100%", height: "100%"}}/>)}
+          
         </Transition>
       ))} 
       </div>
